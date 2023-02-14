@@ -6,8 +6,6 @@ const blogSchema = new Schema({
     type: String,
     required: true,
   },
-  comments: {
-    type: { type: Schema.Types.ObjectId, ref: "Comment" },
-  },
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
 });
 module.exports = mongoose.model("Blog", blogSchema);

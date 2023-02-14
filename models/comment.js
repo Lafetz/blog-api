@@ -11,4 +11,4 @@ const commentSchema = new Schema({
   },
   timeStamp: { type: Date, default: Date.now() },
 });
-module.exports = mongoose.exports("Comment", commentSchema);
+module.exports = mongoose.model("Comment", commentSchema);
