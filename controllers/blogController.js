@@ -11,7 +11,9 @@ exports.blogs_list = (req, res, next) => {
 
 exports.blog_get = async (req, res, next) => {
   try {
-    const blog = await Blog.findOne({ _id: req.params.blogId });
+    const blog = await Blog.findOne({ _id: req.params.blogId }).populate(
+      "comments"
+    );
     res.status(200).json(blog);
   } catch (err) {
     return next(err);

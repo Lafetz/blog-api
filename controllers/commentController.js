@@ -1,4 +1,5 @@
 const Comment = require("../models/comment");
+const Blog = require("../models/blog");
 exports.comment_list = (req, res, next) => {
   Comment.find()
     .then((comments) => {
@@ -10,14 +11,18 @@ exports.comment_list = (req, res, next) => {
 };
 exports.comment_post = (req, res, next) => {
   const comment = new Comment({
-    username: "user id", /////////////////fix don't forget
+    username: req.user.username,
     content: req.body.content,
   });
-  comment._id = req.params.blogId;
+
   comment
     .save()
     .then((x) => {
       res.sendStatus(200);
+      Blog.findById(req.body.blogId).then((blog) => {
+        blog.comments.push(comment._id);
+        blog.save();
+      });
     })
     .catch((err) => {
       return next(err);
