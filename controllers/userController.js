@@ -79,8 +79,6 @@ exports.userStatus = (req, res, next) => {
   if (req.user) {
     res.status(200).json(req.user);
   } else {
-    res.status(200).json({
-      notReg: true,
-    });
+    res.status(401);
   }
 };

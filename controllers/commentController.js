@@ -11,7 +11,7 @@ exports.comment_list = (req, res, next) => {
 };
 exports.comment_post = (req, res, next) => {
   const comment = new Comment({
-    username: "noman", //req.user.username
+    username: req.body.username, //
     blogID: req.params.blogId,
     content: req.body.content,
   });
@@ -24,16 +24,6 @@ exports.comment_post = (req, res, next) => {
       return next(err);
     });
 };
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 exports.comment_put = async (req, res, next) => {
   const comment = await Comment.findOne({ _id: req.params.commentId });
   comment.content = req.body.content;

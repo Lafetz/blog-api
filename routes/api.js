@@ -6,13 +6,10 @@ const commentController = require("../controllers/commentController");
 const verifyUser = require("../middleware/verifyUser");
 //login and signUP
 
-// blogs
+// blogs verifyUser.userAdmin,
 
 router.get("/:blogId", blogController.blog_get);
-router
-  .route("/")
-  .get(blogController.blogs_list)
-  .post(verifyUser.userAdmin, blogController.blog_post);
+router.route("/").get(blogController.blogs_list).post(blogController.blog_post);
 router.put("/:blogId", verifyUser.userAdmin, blogController.blog_put);
 router.delete("/:blogId", verifyUser.userAdmin, blogController.blog_delete);
 //comments
@@ -30,7 +27,7 @@ router.put(
 );
 router.delete(
   "/:blogId/comments/:commentId",
-  verifyUser.userExist,
+
   commentController.comment_delete
 );
 
