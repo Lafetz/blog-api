@@ -15,11 +15,9 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use("/blog", verifyToken, api);
+app.use("/blogs", verifyToken, api);
 app.use("/", verifyToken, user);
-app.use("/hello", verifyToken, (req, res, next) => {
-  res.sendStatus(200);
-});
+
 app.listen(process.env.PORT, () =>
   console.log(`Server listening on ${process.env.PORT}`)
 );

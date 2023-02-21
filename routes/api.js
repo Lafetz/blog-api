@@ -17,9 +17,10 @@ router.put("/:blogId", verifyUser.userAdmin, blogController.blog_put);
 router.delete("/:blogId", verifyUser.userAdmin, blogController.blog_delete);
 //comments
 router.get("/:blogId/comments", commentController.comment_list);
+//verifyUser.userExist,
 router.post(
   "/:blogId/comments",
-  verifyUser.userExist,
+
   commentController.comment_post
 );
 router.put(
