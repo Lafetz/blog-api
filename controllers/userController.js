@@ -47,19 +47,16 @@ exports.log_in = [
   body("username", "username can't be empty").trim().notEmpty().escape(),
   body("password", "password can't be empty").trim().notEmpty().escape(),
   async (req, res, next) => {
-    console.log(req.body);
     try {
       const user = await User.find({ username: req.body.username });
 
       if (user.length === 0) {
-        console.log("what is happening", 1);
         return res.status(401).json({ msg: "user name not found" });
       }
       bcrypt.compare(req.body.password, user[0].password, (err, result) => {
         if (!result) {
           return res.status(401).json({ msg: "Incorrect password " });
         } else {
-          console.log(user[0]);
           const accessToken = jwt.sign(user[0].toJSON(), process.env.TOP_KEY);
           res
             .cookie("token", accessToken, {
@@ -81,4 +78,7 @@ exports.userStatus = (req, res, next) => {
   } else {
     res.status(401);
   }
+};
+exports.log_out = (req, res, next) => {
+  res.clearCookie("token").sendStatus(200);
 };
