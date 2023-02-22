@@ -7,7 +7,9 @@ const user = require("./routes/user");
 const api = require("./routes/api");
 const verifyToken = require("./middleware/auth");
 const app = express();
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(
+  cors({ credentials: true, origin: "https://lafetz.github.io/blog-client/" })
+);
 
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGODB);
