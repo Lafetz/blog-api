@@ -8,7 +8,10 @@ const api = require("./routes/api");
 const verifyToken = require("./middleware/auth");
 const app = express();
 app.use(
-  cors({ credentials: true, origin: "https://lafetz.github.io/blog-client/" })
+  cors({
+    credentials: true,
+    origin: ["https://lafetz.github.io", "http://localhost:3000/"],
+  })
 );
 
 mongoose.set("strictQuery", false);
