@@ -17,7 +17,7 @@ router.get("/:blogId/comments", commentController.comment_list);
 //verifyUser.userExist,
 router.post(
   "/:blogId/comments",
-
+  verifyUser.userExist,
   commentController.comment_post
 );
 router.put(
@@ -27,7 +27,7 @@ router.put(
 );
 router.delete(
   "/:blogId/comments/:commentId",
-
+  verifyUser.userExist,
   commentController.comment_delete
 );
 
