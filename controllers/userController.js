@@ -58,7 +58,7 @@ exports.log_in = [
           return res.status(401).json({ msg: "Incorrect password " });
         } else {
           const accessToken = jwt.sign(user[0].toJSON(), process.env.TOP_KEY);
-          console.log(accessToken);
+
           res
             .cookie("token", accessToken, {
               maxAge: 86400 * 1000,
